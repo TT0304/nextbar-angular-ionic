@@ -1,0 +1,54 @@
+<ion-header>
+ 	<ion-toolbar>
+		<ion-buttons slot="start">
+		   	<ion-back-button></ion-back-button>
+		</ion-buttons>
+      	<ion-title>
+           	<ng-container>Racuni</ng-container>    
+      	</ion-title>  
+ 	</ion-toolbar>
+</ion-header>
+<ion-content>
+	<div class="outer">
+      	<ion-list>
+			<ion-item>
+	          <ion-label>Od</ion-label>
+	          <ion-datetime displayFormat="YYYY-MM-DDTHH:mm" placeholder="{{dt}}" [(ngModel)]="dt" >
+                  	</ion-datetime>
+			</ion-item>
+		
+			<ion-item>
+	          	<ion-label >do</ion-label>
+	          	<ion-datetime displayFormat="YYYY-MM-DDTHH:mm" placeholder="{{enddt}}" [(ngModel)]="enddt" >
+                        </ion-datetime>
+			</ion-item>      		
+      		<ion-item>
+      			<ion-label>Konobar</ion-label>
+				<ion-select value="brown" okText="Okay" [(ngModel)]="konobar"  cancelText="Otkazi" >
+		      		<ion-select-option value="{{ki.id}}" *ngFor="let ki of KonobarList">{{ki.ime}}</ion-select-option>
+			    	</ion-select>
+		    	</ion-item>
+      		<ion-item>
+      			<ion-label>Nivo</ion-label>
+				<ion-select value="brown" okText="Okay" cancelText="Otkazi" (ionChange)="filterbyNivo($event)" [(ngModel)]="nivoi">
+		              	<ion-select-option value="-1">Sve</ion-select-option>
+		              	<ion-select-option value="{{item.id}}" *ngFor="let item of nivoiList">{{item.ime}}</ion-select-option>
+		          </ion-select>
+      		</ion-item>
+      		<ion-item>
+      			<ion-label>Sto</ion-label>
+				<ion-select value="brown" okText="Okay" [(ngModel)]="sto"  cancelText="Otkazi" >
+			      	<ion-select-option value="{{si.id}}" *ngFor="let si of StoList">{{si.ime}}</ion-select-option>
+			    	</ion-select>
+      		</ion-item>
+      		
+      		
+		</ion-list>
+		<ion-row>
+	          	<ion-col>
+	               	<ion-button type="button" expand="block"  class="primary" (click)="save()">Prikazi</ion-button>
+	          	</ion-col>
+	     </ion-row>
+	</div>
+	
+</ion-content>

@@ -1,0 +1,91 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Artikli - {{imeStola}}</ion-title>
+    <!-- <ion-buttons slot="end">
+      <ion-button routerLink="/home/articles/add-articles">
+        <ion-icon slot="icon-only" name="add-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-toolbar>
+  <ion-row>
+
+    <ion-col>
+      <ion-item>
+        <ion-label position="stacked">Kat1</ion-label>
+
+        <ion-select (ionChange)="getCategories2()" selectedText="{{selectedText}}" value="" okText="Okay"
+          cancelText="Otkazi" [(ngModel)]="artikli_id_kat1">
+          <!-- <ion-select-option value="">Select</ion-select-option> -->
+          <ion-select-option value="{{item.id}}" *ngFor="let item of categories">{{item.naziv}}</ion-select-option>
+
+        </ion-select>
+
+      </ion-item>
+    </ion-col>
+    <ion-col>
+
+      <ion-item>
+        <ion-label position="stacked">Kat2</ion-label>
+
+        <ion-select selectedText="{{selectedText2}}" (ionChange)="getData()" value="" okText="Okay"
+          cancelText="Otkazi" [(ngModel)]="artikli_id_kat2">
+          <!-- <ion-select-option value="">Select</ion-select-option> -->
+
+          <ion-select-option value="{{item.id}}" *ngFor="let item of categories2">{{item.naziv}}</ion-select-option>
+
+        </ion-select>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+</ion-toolbar>
+<ion-content>
+
+
+
+
+  <ion-list lines="full" class="clist" *ngIf="dataLoaded==true && data.length>0;" mode="md">
+    <!-- | filterByImpure: ['artikli_ime', 'kategorije1_naziv','artikli_cena','kategorije2_naziv'] -->
+    <ion-item *ngFor="let item of data; let i=index" appLongPress (longPress)="onLongPress($event, item)">
+      <ion-label slot="start">
+        <h3>{{item.artikli_ime}}</h3> 
+        <p>{{item.kategorije1_naziv}}, {{item.kategorije2_naziv}}</p>
+        <p>{{item.artikli_cena}}</p>
+      </ion-label>
+      <ion-label slot="end" class="cartContainer">
+        <div class="cart">
+          <a fill="clear" class="actionBtn" color="danger" (click)="removeQty(item)">
+            <ion-icon name="remove-circle-outline"></ion-icon>
+          </a>
+          <div class="qty">{{item.kolacina}}</div>
+          <a fill="clear" class="actionBtn" color="primary" (click)="addQty(item)">
+            <ion-icon name="add-circle-outline"></ion-icon>
+          </a>
+        </div>
+      </ion-label>
+    </ion-item>
+    
+
+  </ion-list>
+
+
+  <div *ngIf="!dataLoaded" class="skeleton">
+    <div class="ion-padding custom-skeleton item" *ngFor="let item of skeleton">
+      <ion-skeleton-text animated></ion-skeleton-text>
+      <ion-skeleton-text animated></ion-skeleton-text>
+      <ion-skeleton-text animated style="width: 88%"></ion-skeleton-text>
+    </div>
+  </div>
+
+
+</ion-content>
+<ion-footer>
+  <!-- <ion-button  expand="block"  class="primary" (click)="submit()">Zavrsi</ion-button> -->
+  <ion-button expand="block" class="primary" (click)="confirm()">Zavrsi</ion-button>
+</ion-footer>

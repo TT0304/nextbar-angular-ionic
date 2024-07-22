@@ -1,0 +1,23 @@
+
+.cartContainer{
+    flex:2;
+    margin: 0;
+}
+
+.cart{
+    display: flex;
+    flex-direction: row;
+    a{
+        font-size: 30px;
+    }
+    .qty{
+        margin:0 0px;
+        font-size: 20px;
+        padding-top:5px;
+        width:100px;
+        text-align: center;
+    }
+    ion-input{
+        width:50px;
+    }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "PSL",
+  "integrations": {
+    "capacitor": {},
+    "cordova": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,33 @@
+<ion-header>
+      <ion-toolbar>
+            <ion-buttons slot="start">
+                  <ion-back-button defaultHref="/home"></ion-back-button>
+            </ion-buttons>
+            <ion-title>Narudzbina: {{item.order_id}} </ion-title>
+      </ion-toolbar>
+</ion-header>
+<ion-content>
+   <ion-list lines="full" class="clist">
+		<ion-item>
+			<ion-label class="ion-text-wrap">
+		      	<h3>Narudzbina: {{item.order_id}}</h3>
+		      	<p>{{item.datum}}</p>
+			</ion-label>
+			<ion-badge slot="end" class="ion-padding">{{item.ukupno}}</ion-badge>
+		</ion-item>
+		<div class="orderdetail">
+			<ion-row class="row" *ngFor="let i of data">
+			  	<ion-col class="col" size="4">
+			        {{i.naziv_proizvoda}}
+			  	</ion-col>
+			  	<ion-col class="ion-text-center" size="4">
+			        {{i.kolicina }} x    {{i.cena }}
+			  	</ion-col>
+			  	<ion-col class="ion-text-right" size="4">
+			        {{i.kolicina * i.cena  }}
+			  	</ion-col>
+			</ion-row>
+		</div>
+  	</ion-list> 
+     
+</ion-content>

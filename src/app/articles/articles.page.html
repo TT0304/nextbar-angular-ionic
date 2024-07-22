@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Artikli</ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/home/articles/add-articles">
+        <ion-icon slot="icon-only" name="add-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-toolbar>
+  <ion-searchbar showCancelButton="focus" mode="ios" [(ngModel)]="search" color="light" placeholder="Pretraga"></ion-searchbar>
+
+</ion-toolbar>
+<ion-content>
+
+
+
+
+  <ion-list lines="full" class="clist" *ngIf="dataLoaded==true && data.length>0;" mode="md">
+
+      <ion-item *ngFor="let item of data | filterByImpure: ['artikli_ime', 'kategorije1_naziv','artikli_cena','kategorije2_naziv']: search; let i=index">
+        <ion-thumbnail slot="start"   [routerLink]="['/home/articles/add-articles',item]" >
+          <ion-img *ngIf="item.artikli_slika!=''" src="{{mediaPath}}{{item.artikli_slika}}"></ion-img>
+          <ion-img *ngIf="item.artikli_slika==''" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw=="></ion-img>
+        </ion-thumbnail>
+       
+        <ion-label class="ion-text-wrap"  [routerLink]="['/home/articles/add-articles',item]" >
+          <h3>{{item.artikli_ime}}</h3>
+
+          <p>{{item.kategorije1_naziv}}, {{item.kategorije2_naziv}}</p>
+
+        </ion-label>
+  
+   
+        <ion-badge color="primary" slot="end">{{item.artikli_cena}}</ion-badge>
+        <ion-button slot="end" fill="clear" size="3" class="actionBtn" color="danger"  (click)="confirmDelete(item.artikli_id,i)"> <ion-icon name="trash" ></ion-icon></ion-button>
+
+
+      </ion-item>
+
+  </ion-list>
+
+
+  <div *ngIf="!dataLoaded" class="skeleton">
+    <div class="ion-padding custom-skeleton item" *ngFor="let item of skeleton">
+      <ion-skeleton-text animated></ion-skeleton-text>
+      <ion-skeleton-text animated></ion-skeleton-text>
+      <ion-skeleton-text animated style="width: 88%"></ion-skeleton-text>
+    </div>
+  </div>
+
+
+</ion-content>

@@ -1,0 +1,50 @@
+<ion-header>
+     <ion-toolbar>
+          <ion-buttons slot="start">
+               <ion-back-button (click)="close()"></ion-back-button>
+          </ion-buttons>
+          <ion-title>
+               <ng-container>Konfiguracija</ng-container>    
+          </ion-title>  
+     </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+     <p>Unesite adresu servera</p>
+     <div class="txt">
+          <ion-icon name="albums-outline" slot="start"> </ion-icon>
+               <ion-input   placeholder="Naziv restorana" autocomplete="off" autocorrect="off" (ngModelChange)="clearputvalue()" type="text" [(ngModel)]="server_title" name="email">
+          </ion-input>
+     </div>
+     <div class="txt">
+          <ion-icon name="albums-outline" slot="start"> </ion-icon>
+               <ion-input   placeholder="Adresa servera" autocomplete="off" autocorrect="off" type="text" [(ngModel)]="server"   
+               (ngModelChange)="clearputvalue()" name="email">
+           </ion-input>
+     </div>
+     <div class="txt">
+          <ion-icon name="print-outline" slot="start"> </ion-icon>
+          <ion-select placeholder="Odabir printera" [(ngModel)]="selectedPrinter">
+                <ion-select-option *ngFor="let printer of printerList" [value]="printer.name">{{ printer.name }}</ion-select-option>
+          </ion-select>
+    </div>
+    <ion-row>
+     <ion-col>
+          <ion-button type="button" expand="block" class="primary" (click)="savePrinter()">spremiti Printer</ion-button>
+     </ion-col>
+    </ion-row>
+     <div class="test-server">
+          <div  *ngFor="let sl of serverList" class="server-list" (click)="addnewserver(sl)">
+               <ion-icon (click)="removeip(sl.id)" name="add-circle-outline"></ion-icon>
+               <h4>{{sl.title}}</h4>
+               <h5>{{sl.server}}</h5>
+          </div>
+     </div>
+     
+     <ion-row>
+          <ion-col>
+               <ion-button type="button" expand="block"  class="primary" (click)="save()">Sacuvaj</ion-button>
+          </ion-col>
+     </ion-row>
+
+</ion-content>

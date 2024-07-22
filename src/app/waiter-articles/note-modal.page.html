@@ -1,0 +1,17 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title>Dodaj napomenu</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="dismiss()">Zatvori</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+    <ion-item>
+      <ion-label position="stacked">Napomena</ion-label>
+      <ion-textarea [(ngModel)]="note"></ion-textarea>
+    </ion-item>
+    <ion-button expand="full" (click)="saveNote()">Sacuvaj napomenu</ion-button>
+  </ion-content>
+  

@@ -1,0 +1,58 @@
+<ion-app>
+    <ion-split-pane contentId="main-content">
+        <ion-menu contentId="main-content" type="overlay">
+            <ion-content id="sidemenu">
+                <div class="menuHeader"  [routerLink]="['/home']" routerLinkActive="router-link-active" >
+                    <div class="logo" > </div>
+                    <p>{{user?.ime}}</p>
+                    <p>{{user?.prioritet}}</p>
+                </div>
+                <ion-list lines="full" color="none">
+                <ion-menu-toggle auto-hide="true" >
+                    <ion-reorder-group (ionItemReorder)="doReorder($event)" disabled="false">
+                        <ion-item [routerLink]="[p.url]" *ngFor="let p of appPages">
+                            <ion-icon slot="start" [name]="p.icon"></ion-icon>
+                            <ion-label>
+                                {{p.title}}
+                            </ion-label>
+                            <!-- <ion-reorder slot="end"></ion-reorder> -->
+                        </ion-item>
+                     </ion-reorder-group>
+                    <ion-item [routerLink]="['/products',{'type':'ulaz'}]" routerLinkActive="router-link-active" *ngIf="userType!='Konobar'">
+                        <ion-icon slot="start" name="pricetag-outline"></ion-icon>
+                        <ion-label>
+                            Ulaz
+                        </ion-label>
+                    </ion-item>
+                    <ion-item [routerLink]="['/products',{'type':'virman'}]" routerLinkActive="router-link-active"  *ngIf="userType!='Konobar'">
+                        <ion-icon slot="start" name="pricetags-outline"></ion-icon>
+                        <ion-label>
+                            Ulaz Virman
+                        </ion-label>
+                    </ion-item>
+                    <ion-item  [routerLink]="['/changepassword']">
+                        <ion-icon slot="start" name="key-outline"></ion-icon>
+                            <ion-label>
+                                Promeni lozinku
+                            </ion-label>
+                    </ion-item>
+                    <ion-item   [routerLink]="['/homeconfig']">
+                        <ion-icon slot="start" name="settings-outline"></ion-icon>
+                            <ion-label>
+                                Konfiguracija
+                            </ion-label>
+                    </ion-item>
+                    <ion-item  (click)="logout();">
+                        <ion-icon slot="start" name="log-out"></ion-icon>
+                            <ion-label>
+                                Odjava
+                            </ion-label>
+                    </ion-item>
+                    </ion-menu-toggle>
+                </ion-list>
+             </ion-content>
+        </ion-menu>
+        <ion-router-outlet id="main-content" mode="md"></ion-router-outlet>
+    </ion-split-pane>
+</ion-app>
+  

@@ -1,0 +1,91 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/waiters"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      <ng-container *ngIf="frmType=='add'">Dodaj konobara</ng-container>
+      <ng-container *ngIf="frmType=='edit'">Azuriraj konobara</ng-container>
+    </ion-title>  
+ 
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding-horizontal">
+
+  <form [formGroup]="frm" (ngSubmit)="submit()" method="post" class="cfrm" [ngClass]="frmSubmitted==true ? '' : 'frmnotValid'">
+
+
+    <div class="">
+
+      <ion-list>
+
+      <ion-item>
+        <ion-label position="floating">Ime</ion-label>
+        <ion-input  formControlName="ime" inputmode="text" required name="ime" type="text" required clearInput enterkeyhint="next" [disabled]="frmType=='edit'"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Prezime</ion-label>
+        <ion-input   formControlName="prezime" inputmode="text"   required name="prezime" type="text" required clearInput  enterkeyhint="next"></ion-input>
+
+      </ion-item>
+    
+      <ion-item *ngIf="frmType!='edit'">
+        <ion-label position="floating">Lozinka</ion-label>
+        <ion-input   formControlName="lozinka" inputmode="text" required name="lozinka" type="password" required clearInput  enterkeyhint="next"></ion-input>
+      </ion-item>
+    
+<!-- 
+      <ion-item>
+        <ion-label position="floating">Prioritet</ion-label>
+        <ion-input   formControlName="prioritet" inputmode="text" required name="prezime" type="text" required clearInput  enterkeyhint="next"></ion-input>
+      </ion-item>
+     -->
+      <ion-item>
+        <ion-label position="floating">Ulica Broj</ion-label>
+        <ion-input   formControlName="ulica_broj" inputmode="text"   name="prezime" type="text"   clearInput  enterkeyhint="next"></ion-input>
+      </ion-item>
+
+    
+      <ion-item>
+        <ion-label position="floating">Grad</ion-label>
+        <ion-input   formControlName="grad" inputmode="text"   name="grad" type="text"   clearInput  enterkeyhint="next"></ion-input>
+      </ion-item>
+    
+    
+      <ion-item>
+        <ion-label position="floating">Br_lk</ion-label>
+        <ion-input   formControlName="br_lk" inputmode="text"   name="prezime" type="text"   clearInput  enterkeyhint="next"></ion-input>
+      </ion-item>
+    
+      <ion-item>
+        <ion-label position="floating">Telefon</ion-label>
+        <ion-input   formControlName="telefon" inputmode="tel"   name="prezime" type="tel"   clearInput  enterkeyhint="next"></ion-input>
+      </ion-item>
+        
+      <ion-item>
+        <ion-label position="floating">jmbg</ion-label>
+        <ion-input   formControlName="jmbg" inputmode="text"   name="prezime" type="text"   clearInput  enterkeyhint="next"></ion-input>
+      </ion-item>
+    
+      <ion-item>
+        <ion-label position="floating">napomena</ion-label>
+        <ion-input   formControlName="napomena" inputmode="text" name="prezime" type="text"  clearInput  enterkeyhint="next"></ion-input>
+      </ion-item>
+    
+
+    </ion-list>
+
+    </div>  
+
+
+
+    <ion-button type="submit" expand="block"  class="primary">Zavrsi</ion-button>
+
+   
+   
+     </form>
+
+
+</ion-content>

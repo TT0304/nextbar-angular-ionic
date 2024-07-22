@@ -1,0 +1,89 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/login"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Register</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+
+  <div class="formError err" *ngIf="formError && !authForm.valid">
+  <p class="errorHeading">
+    Please correct following error
+
+  </p>
+
+    <div *ngIf="authForm.controls['name'].status=='INVALID'">
+      <li *ngIf="authForm.controls['name'].errors?.required">Name is required</li>
+      <li *ngIf="authForm.controls['name'].errors?.minlength">Name should contain atleast 3 Characters </li>
+    </div>
+    <div *ngIf="authForm.controls['email'].status=='INVALID'">
+      <li *ngIf="authForm.controls['email'].errors?.required">Email is required</li>
+      <li *ngIf="authForm.controls['email'].errors?.pattern">Email is not valid</li>
+    </div>
+    <div *ngIf="authForm.controls['password'].status=='INVALID'">
+      <li *ngIf="authForm.controls['password'].errors?.required">Password is required</li>
+      <li *ngIf="authForm.controls['password'].errors?.minlength">Password should contain atleast 6 characters</li>
+    </div>
+    <div *ngIf="authForm.controls['phone'].status=='INVALID'">
+      <li *ngIf="authForm.controls['phone'].errors?.required">Phone number is required</li>
+    </div>
+    <div *ngIf="authForm.controls['address'].status=='INVALID'">
+      <li *ngIf="authForm.controls['address'].errors?.required">Address number is required</li>
+    </div>
+    <div *ngIf="authForm.controls['businessName'].status=='INVALID'">
+      <li *ngIf="authForm.controls['businessName'].errors?.required">Business Name is required</li>
+    </div>
+    
+  </div>
+
+  <form [formGroup]="authForm" (ngSubmit)="register()" method="post" class="loginPage">
+
+    <div class="err" *ngIf="err">{{err}}</div>
+
+
+    <ion-input formControlName="name" placeholder="Name" type="text" name="name" class="txt">
+      <ion-icon name="person" slot="start"> </ion-icon>
+
+
+    </ion-input>
+    <ion-input formControlName="email" placeholder="Email Address" autocomplete="off" autocorrect="off" type="email"
+      name="email" class="txt">
+      <ion-icon name="mail-outline" slot="start"> </ion-icon>
+    </ion-input>
+    <ion-input formControlName="password" placeholder="Password" type="password" name="password" class="txt">
+      <ion-icon name="key-outline" slot="start"> </ion-icon>
+
+
+    </ion-input>
+    <ion-input formControlName="phone" placeholder="Mobile No" type="text" name="mobileNo" class="txt">
+      <ion-icon name="phone-portrait-outline" slot="start"> </ion-icon>
+
+
+    </ion-input>
+    <ion-input formControlName="address" placeholder="Address" type="text" name="mobileNo" class="txt">
+      <ion-icon name="home-outline" slot="start"> </ion-icon>
+
+
+    </ion-input>
+    <ion-input formControlName="businessName" placeholder="Business Name" type="text" name="mobileNo" class="txt">
+      <ion-icon name="business-outline" slot="start"> </ion-icon>
+
+
+    </ion-input>
+
+
+
+
+    <!-- [disabled]="!authForm.valid" -->
+    <ion-button type="submit" expand="full" >Submit</ion-button>
+ 
+
+
+  </form>
+
+
+</ion-content>

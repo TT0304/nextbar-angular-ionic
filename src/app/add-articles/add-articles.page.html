@@ -1,0 +1,196 @@
+ 
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home/articles"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      <ng-container *ngIf="frmType=='add'">Dodaj artikal</ng-container>
+      <ng-container *ngIf="frmType=='edit'">Azuriraj artikal</ng-container>
+    </ion-title>  
+ 
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding-horizontal">
+
+  <form [formGroup]="frm" (ngSubmit)="submit()" method="post" class="cfrm" [ngClass]="frmSubmitted==true ? '' : 'frmnotValid'">
+
+    <div class="">
+
+      <ion-list>
+
+      <ion-item>
+        <ion-label position="floating">Ime</ion-label>
+        <ion-input  formControlName="artikli_ime" inputmode="text" required name="ime" type="text" required clearInput enterkeyhint="next"></ion-input>
+      </ion-item>
+
+     
+    
+      <ion-item>
+        <ion-label position="floating">Sifra</ion-label>
+        <ion-input   formControlName="artikli_sifra" inputmode="number" required name="prezime" type="tel" required clearInput  enterkeyhint="next"></ion-input>
+      </ion-item>
+    
+<!-- 
+      <ion-item>
+        <ion-label position="floating">Prioritet</ion-label>
+        <ion-input   formControlName="prioritet" inputmode="text" required name="prezime" type="text" required clearInput  enterkeyhint="next"></ion-input>
+      </ion-item>
+     -->
+      <!-- <ion-item>
+        <ion-label position="floating">Bar Kod</ion-label>
+        <ion-input   formControlName="artikli_bar_kod" inputmode="text" required name="prezime" type="text" required clearInput  enterkeyhint="next"></ion-input>
+      </ion-item> -->
+
+<!--     
+      <ion-item>
+        <ion-label position="floating">Kataloska Sifra</ion-label>
+        <ion-input   formControlName="artikli_kataloska_sifra" inputmode="text" required name="grad" type="text" required clearInput  enterkeyhint="next"></ion-input>
+      </ion-item>
+     -->
+      <ion-row>
+
+        <ion-col>
+
+          <ion-item>
+            <ion-label position="floating">PDV</ion-label>
+ 
+            <ion-select    value="" okText="Okay" cancelText="Otkazi" formControlName="artikli_pdv">
+              <ion-select-option value="0">0</ion-select-option>
+              <ion-select-option value="10">10</ion-select-option>
+              <ion-select-option value="20">20</ion-select-option>
+    
+            </ion-select>
+
+
+          </ion-item>
+        </ion-col>
+
+      
+        <ion-col>
+          <ion-item>
+            <ion-label position="floating">JM</ion-label>
+             
+            <ion-select    value="" okText="Okay" cancelText="Otkazi" formControlName="artikli_JM">
+              <ion-select-option value="KOM">KOM</ion-select-option>
+              <ion-select-option value="KG">KG</ion-select-option>
+    
+            </ion-select>
+
+          </ion-item>
+    
+        </ion-col>
+
+        
+      </ion-row>
+
+
+
+   
+    
+  
+
+      <ion-row>
+
+<ion-col>
+  <ion-item>
+    <ion-label position="floating">Kolicina</ion-label>
+    <ion-input  formControlName="artikli_kolicina" inputmode="decimal" myNumberOnly name="artikli_kolicina" type="tel" clearInput  enterkeyhint="next"></ion-input>
+  </ion-item>
+</ion-col>
+
+  <ion-col>
+
+        
+    <ion-item>
+      <ion-label position="floating">Kolicina 2</ion-label>
+      <ion-input   formControlName="artikli_kolicina2" inputmode="decimal"  myNumberOnly name="artikli_kolicina2" type="tel" clearInput  enterkeyhint="next"></ion-input>
+    </ion-item>
+  </ion-col>
+
+      </ion-row>
+
+        
+   
+
+
+ 
+
+              
+      <ion-item>
+        <ion-label position="stacked">Kat1</ion-label>
+
+        <ion-select (ionChange)="getCategories2()" selectedText="{{selectedText}}"    value="" okText="Okay" cancelText="Otkazi" formControlName="artikli_id_kat1">
+          <ion-select-option value="{{item.id}}" *ngFor="let item of categories">{{item.naziv}}</ion-select-option>
+
+        </ion-select>
+
+      </ion-item>
+
+              
+      <ion-item>
+        <ion-label position="stacked">Kat2</ion-label>
+
+        <ion-select selectedText="{{selectedText2}}"        value="" okText="Okay" cancelText="Otkazi" formControlName="artikli_id_kat2" (ionChange)="selectCategory2()">
+          <ion-select-option value="{{item.id}}" *ngFor="let item of categories2">{{item.naziv}}</ion-select-option>
+
+        </ion-select>
+      </ion-item>
+
+              
+      <ion-item>
+        <ion-label position="floating">Vrsta Serviranja</ion-label>
+ 
+        <ion-select selectedText="{{artikli_vrsta_serviranjaText}}"        value="" okText="Okay" cancelText="Otkazi" formControlName="artikli_vrsta_serviranja">
+          <ion-select-option value="{{item.id}}" *ngFor="let item of vrsta">{{item.ime}}</ion-select-option>
+
+        </ion-select>
+
+        
+
+      </ion-item>
+
+    
+      <ion-item>
+        <ion-label position="floating">Cena</ion-label>
+        <ion-input   formControlName="artikli_cena" inputmode="decimal" name="artikli_cena" required type="tel"  clearInput  enterkeyhint="next"></ion-input>
+      </ion-item>
+    
+    
+      <ion-item>
+        <ion-label position="floating">Napomena</ion-label>
+        <ion-input   formControlName="artikli_napomena" inputmode="text" name="prezime" type="text"  clearInput  enterkeyhint="next"></ion-input>
+      </ion-item>
+    
+
+    </ion-list>
+
+    
+  
+    <div class="addPictureIcon">
+      <a (click)="takePicture()" style="padding:10px; display:block">
+
+      
+      <ion-icon name="camera-outline" *ngIf="productImage==''"></ion-icon>
+      <img src="{{productImage}}" alt="" *ngIf="productImage!=''">
+
+    </a>
+
+    </div>
+
+
+  
+  </div>  
+
+
+
+
+    <ion-button type="submit" expand="block"  class="primary">Zavrsi</ion-button>
+
+   
+   
+     </form>
+
+
+</ion-content>

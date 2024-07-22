@@ -1,0 +1,63 @@
+.reports{
+    padding:10px;
+    h3{
+        background: #ddd;
+        padding: 10px 10px;
+        margin-bottom: 0px;
+        font-weight: bold;
+    }
+
+    .lbl{
+        position: relative;
+        font-size: 16px;
+        padding: 8px 20px;
+        background: #efefef;
+        border-bottom: solid 1px #ddd;
+        span{
+             float:right;
+            text-align: right;
+        }
+    }
+    .lbl:nth-child(odd){
+        background:#fff;
+    }
+}
+.lbl-7 {
+    display: flex;
+    text-align: center;
+    margin-top: 10px;
+    span {
+        width: 33%;
+    }
+}
+.err{
+    margin:30px;
+    padding: 20px;
+    text-align: center;
+}
+
+.searchItem{
+    --background:none;
+    --border:none;
+    a{
+        padding: 0;
+        color: #fff;
+        font-size: 27px;
+        outline: none;
+    }
+}
+ion-datetime {
+    padding: 0;
+    margin: 0;
+    font-size: 13px;
+}
+.total {
+    float: right;
+    margin-right: 53px;
+    margin-top: 15px;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+
+    

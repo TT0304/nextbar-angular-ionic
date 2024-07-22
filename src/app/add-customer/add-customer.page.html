@@ -1,0 +1,214 @@
+ 
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/customers"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      <ng-container *ngIf="frmType=='add'">Dodaj komitenta</ng-container>
+      <ng-container *ngIf="frmType=='edit'">Azuriraj Komitenta</ng-container>
+    </ion-title>  
+ 
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="ion-padding-horizontal">
+
+  <form [formGroup]="frm" (ngSubmit)="submit()" method="post" class="cfrm" [ngClass]="frmSubmitted==true ? '' : 'frmnotValid'">
+
+
+    <div class="">
+
+      <ion-list>
+
+      <ion-item>
+        <ion-label position="floating">Naziv</ion-label>
+        <ion-input  formControlName="naziv" inputmode="text" required name="naziv" type="text" required clearInput enterkeyhint="next"></ion-input>
+      </ion-item>
+
+     
+    
+      <ion-item>
+        <ion-label position="floating">pib</ion-label>
+        <ion-input   formControlName="pib" inputmode="number" required name="pib" type="tel" required clearInput  enterkeyhint="next"></ion-input>
+      </ion-item>
+ 
+    
+      <ion-item>
+        <ion-label position="floating">Maticni Broj</ion-label>
+        <ion-input   formControlName="maticni_broj" inputmode="number" required name="maticni_broj" type="tel" required clearInput  enterkeyhint="next"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Sifra delatnosti</ion-label>
+        <ion-input   formControlName="sifra_delatnosti" inputmode="text" name="sifra_delatnosti" type="text" clearInput  enterkeyhint="next"></ion-input>
+      </ion-item>
+      <ion-row>
+
+        <ion-col>
+
+          <ion-item>
+            <ion-label position="floating">postanski broj</ion-label>
+            <ion-input  formControlName="postanski_broj" inputmode="number" myNumberOnly required name="postanski_broj" type="tel" required clearInput  enterkeyhint="next"></ion-input>
+          </ion-item>
+
+        </ion-col>
+
+      
+        <ion-col>
+          <ion-item>
+            <ion-label position="floating">Ulica Broj</ion-label>
+            <ion-input   formControlName="ulica_broj" inputmode="number" required name="ulica_broj" type="text" required clearInput  enterkeyhint="next"></ion-input>
+          </ion-item>
+    
+        </ion-col>
+
+        
+      </ion-row>
+ 
+ 
+        
+
+        
+    
+
+
+    <ion-row>
+
+      <ion-col>
+
+        <ion-item>
+          <ion-label position="floating">grad</ion-label>
+          <ion-input   formControlName="grad" inputmode="text"  myNumberOnly required name="grad" type="text" required clearInput  enterkeyhint="next"></ion-input>
+        </ion-item>
+     
+     
+
+      </ion-col>
+
+    
+      <ion-col>
+        <ion-item>
+          <ion-label position="floating">drzava</ion-label>
+          <ion-input   formControlName="drzava" inputmode="text"  myNumberOnly required name="drzava" type="text" required clearInput  enterkeyhint="next"></ion-input>
+        </ion-item>
+     
+  
+      </ion-col>
+
+      
+    </ion-row>
+
+
+    
+ 
+
+
+    <ion-row>
+
+      <ion-col>
+
+        <ion-item>
+          <ion-label position="floating">Telefon</ion-label>
+          <ion-input  formControlName="telefon" inputmode="number" myNumberOnly name="telefon" type="tel" clearInput  enterkeyhint="next"></ion-input>
+        </ion-item>
+
+      </ion-col>
+
+    
+      <ion-col>
+        <ion-item>
+          <ion-label position="floating">Telefon 2</ion-label>
+          <ion-input   formControlName="telefon2" inputmode="number" name="telefon2" type="tel"   clearInput  enterkeyhint="next"></ion-input>
+        </ion-item>
+  
+      </ion-col>
+
+      
+    </ion-row>
+
+
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input   formControlName="e_mail" inputmode="email" name="e_mail" type="text"  clearInput  enterkeyhint="next"></ion-input>
+    </ion-item>
+  
+
+    <ion-row>
+
+      <ion-col>
+
+        <ion-item>
+          <ion-label position="floating">fax</ion-label>
+          <ion-input  formControlName="fax" inputmode="number" myNumberOnly name="fax" type="tel" clearInput  enterkeyhint="next"></ion-input>
+        </ion-item>
+
+      </ion-col>
+
+    
+      <ion-col>
+        <ion-item>
+          <ion-label position="floating">websajt</ion-label>
+          <ion-input   formControlName="web_sajt" inputmode="url" name="web_sajt" type="text"   clearInput  enterkeyhint="next"></ion-input>
+        </ion-item>
+  
+      </ion-col>
+
+      
+    </ion-row>
+
+
+
+
+    <ion-row>
+
+      <ion-col>
+
+        <ion-item>
+          <ion-label position="floating">Tekuci racun</ion-label>
+          <ion-input  formControlName="tekuci_racun" inputmode="text" name="tekuci_racun" type="text" clearInput  enterkeyhint="next"></ion-input>
+        </ion-item>
+
+      </ion-col>
+
+    
+      <ion-col>
+        <ion-item>
+          <ion-label position="floating">banka</ion-label>
+          <ion-input   formControlName="banka" inputmode="text" name="banka" type="text"   clearInput  enterkeyhint="next"></ion-input>
+        </ion-item>
+  
+      </ion-col>
+
+      
+    </ion-row>
+
+
+
+
+      <ion-item>
+        <ion-label position="floating">Napomena</ion-label>
+        <ion-input   formControlName="napomena" inputmode="text" name="prezime" type="text"  clearInput  enterkeyhint="next"></ion-input>
+      </ion-item>
+    
+
+    </ion-list>
+
+    
+  
+   
+
+  
+  </div>  
+
+
+
+
+    <ion-button type="submit" expand="block"  class="primary">Zavrsi</ion-button>
+
+   
+   
+     </form>
+
+
+</ion-content>

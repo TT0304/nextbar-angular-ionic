@@ -1,0 +1,179 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/reports"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      <ng-container *ngIf="type=='periodicni'"
+        >Periodicni izvestaj</ng-container
+      >
+      <ng-container *ngIf="type=='izvestaj'">Izvestaj artikala</ng-container>
+      <ng-container *ngIf="type=='articlala_virman'"
+        >Izvestaj artikala virman</ng-container
+      >
+      <ng-container *ngIf="type=='storno_artikala'"
+        >Izvestaj storno artikala</ng-container
+      >
+      <ng-container *ngIf="type=='Izvestaj_kuhinje'"
+        >Izvestaj kuhinje
+      </ng-container>
+      <ng-container *ngIf="type=='Izvestaj_Sanka'">Izvestaj Sanka</ng-container>
+      <ng-container *ngIf="type=='Sastojci'">Sastojci</ng-container>
+    </ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6">
+          <ion-item>
+            <ion-datetime
+              displayFormat="DD-MM-YYYY-HH:mm"
+              placeholder="{{dt}}"
+              [(ngModel)]="dt"
+              (ionChange)="getData()"
+            >
+            </ion-datetime>
+          </ion-item>
+        </ion-col>
+        <ion-col size="6">
+          <ion-item>
+            <ion-datetime
+              displayFormat="DD-MM-YYYY-HH:mm"
+              placeholder="{{enddt}}"
+              [(ngModel)]="enddt"
+              (ionChange)="getData()"
+            >
+            </ion-datetime>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="reports">
+  <div *ngIf="this.dataLoaded && data">
+    <ng-container *ngIf="type=='periodicni'">
+      <div *ngIf="data.report_1">
+        <!-- <div class="lbl">Aktivini Stovili
+                              <span> {{data?.report_1?.activeTable}} </span>
+                        </div> -->
+        <div class="lbl">
+          Gotovina
+          <span> {{data?.report_1?.gotovina}} </span>
+        </div>
+        <div class="lbl">
+          Fiskalna
+          <span> {{data?.report_1?.fiskalna}} </span>
+        </div>
+        <div class="lbl">
+          Kartica
+          <span> {{data?.report_1?.kartica}} </span>
+        </div>
+        <div class="lbl">
+          Ukupno
+          <span> {{data?.report_1?.ukupno}} </span>
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf=" type=='izvestaj' ">
+      <div *ngIf="data.report_2">
+        <div class="lbl-7" *ngFor="let item of data.report_2">
+          <span>{{item.naziv_proizvoda}}</span>
+          <span> {{item?.total}} </span>
+          <span> {{item?.cena_total}} </span>
+        </div>
+        <div *ngIf="total.report_2_total.length > 0" class="total">
+          UKUPNO : {{total.report_2_total}}
+        </div>
+      </div>
+      <div *ngIf="data.report_2.length==0 && type=='izvestaj'" class="err">
+        Nema podataka
+      </div>
+    </ng-container>
+    <ng-container *ngIf=" type=='articlala_virman' ">
+      <div *ngIf="data.report_3 ">
+        <div class="lbl-7" *ngFor="let item of data.report_3">
+          <span>{{item.naziv_proizvoda}}</span>
+          <span> {{item?.total}} </span>
+          <span> {{item?.cena_total}} </span>
+        </div>
+        <div *ngIf="total.report_3_total.length > 0" class="total">
+          UKUPNO : {{total.report_3_total}}
+        </div>
+      </div>
+      <div
+        *ngIf="data.report_3.length==0 && type=='articlala_virman'"
+        class="err"
+      >
+        Nema podataka
+      </div>
+    </ng-container>
+    <ng-container *ngIf=" type=='storno_artikala'">
+      <div *ngIf="data.report_4">
+        <div class="lbl-7" *ngFor="let item of data.report_4">
+          <span>{{item.naziv_proizvoda}}</span>
+          <span> {{item?.total}} </span>
+          <span> {{item?.cena_total}} </span>
+        </div>
+        <div *ngIf="total.report_4_total.length > 0" class="total">
+          UKUPNO : {{total.report_4_total}}
+        </div>
+      </div>
+      <div
+        *ngIf="data.report_4.length==0 && type=='storno_artikala'"
+        class="err"
+      >
+        Nema podataka
+      </div>
+    </ng-container>
+    <ng-container *ngIf=" type=='Izvestaj_kuhinje'">
+      <div *ngIf="data.report_5">
+        <div class="lbl-7" *ngFor="let item of data.report_5">
+          <span>{{item.naziv_proizvoda}}</span>
+          <span> {{item?.total}} </span>
+          <span> {{item?.cena_total}} </span>
+        </div>
+        <div *ngIf="total.report_5_total.length > 0" class="total">
+          UKUPNO : {{total.report_5_total}}
+        </div>
+      </div>
+      <div
+        *ngIf="data.report_5.length==0 && type=='Izvestaj_kuhinje'"
+        class="err"
+      >
+        Nema podataka
+      </div>
+    </ng-container>
+    <ng-container *ngIf=" type=='Izvestaj_Sanka'">
+      <div *ngIf="data.report_6">
+        <div class="lbl-7" *ngFor="let item of data.report_6">
+          <span>{{item.naziv_proizvoda}} </span>
+          <span> {{item?.total}} </span>
+          <span> {{item?.cena_total}} </span>
+        </div>
+        <div *ngIf="total.report_6_total.length > 0" class="total">
+          UKUPNO : {{total.report_6_total}}
+        </div>
+      </div>
+      <div
+        *ngIf="data.report_6.length==0 && type=='Izvestaj_Sanka'"
+        class="err"
+      >
+        Nema podataka
+      </div>
+    </ng-container>
+    <ng-container *ngIf=" type=='Sastojci'">
+      <div *ngIf="data.report_7">
+        <div class="lbl-7" *ngFor="let item of data.report_7">
+          <span> {{item.naziv}} </span>
+          <span> {{item?.JM}} </span>
+          <span> {{item?.kolicina}} </span>
+        </div>
+      </div>
+      <div *ngIf="data.report_7.length==0 && type=='Sastojci'" class="err">
+        Nema podataka
+      </div>
+    </ng-container>
+  </div>
+</ion-content>

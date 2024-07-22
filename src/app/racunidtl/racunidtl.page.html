@@ -1,0 +1,35 @@
+<ion-header>
+ 	<ion-toolbar>
+		<ion-buttons slot="start">
+		   	<ion-back-button ></ion-back-button>
+		</ion-buttons>
+      	<ion-title>
+           	<ng-container>Racuni</ng-container>    
+      	</ion-title>  
+ 	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+     <ion-list lines="full" class="clist" *ngIf="dataLoaded==true"  >
+          <ion-item   *ngFor="let item of data" [routerLink]="['/rorder',item]" >
+               <ion-label class="ion-text-wrap">
+ 				<h3>{{item.sto_name}}</h3>
+ 				<p>{{item.konbara}}</p>
+ 				<p>{{item.nivo_name}}</p>
+ 				<p>{{item.datum}}</p> 
+               </ion-label>
+
+               <ion-badge slot="end" class="ion-padding">{{item.suma}}</ion-badge>
+                <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+          </ion-item>
+     </ion-list>
+     <div *ngIf="!dataLoaded" class="skeleton">
+          <div class="ion-padding custom-skeleton item" *ngFor="let item of skeleton">
+                <ion-skeleton-text animated></ion-skeleton-text>
+                <ion-skeleton-text animated></ion-skeleton-text>
+                <ion-skeleton-text animated style="width: 88%"></ion-skeleton-text>
+          </div>
+    </div>
+   
+      
+</ion-content>

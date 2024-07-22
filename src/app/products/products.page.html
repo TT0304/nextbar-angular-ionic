@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title *ngIf="type=='ulaz'">Ulaz</ion-title>
+    <ion-title *ngIf="type=='virman'">Ulaz Virman</ion-title>
+
+  </ion-toolbar>
+
+  <ion-toolbar *ngIf="!dataAdded">
+    <ion-searchbar placeholder="Pretraga" showCancelButton="focus" mode="ios" [(ngModel)]="search" color="light">
+    </ion-searchbar>
+
+  </ion-toolbar>
+  <ion-toolbar color="secondary" *ngIf="!dataAdded">
+
+
+    <ion-select value="brown" okText="Okay" cancelText="Otkazi" [(ngModel)]="supplier">
+      <ion-select-option value="">Izaberi dobavljaca</ion-select-option>
+      <ion-select-option value="{{item.id}}" *ngFor="let item of suppliers">{{item.naziv}}</ion-select-option>
+    </ion-select>
+    <ion-item>
+      <ion-label>Datum</ion-label>
+      <ion-datetime displayFormat="YYYY-MM-DD" placeholder="Izaberi datum optermnice" [(ngModel)]="dt"></ion-datetime>
+    </ion-item>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content>
+
+  <div *ngIf="!dataAdded">
+
+
+    <ion-list lines="full" class="clist" *ngIf="dataLoaded==true && data.length>0;" mode="md">
+
+      <ion-item *ngFor="let item of data | filterByImpure: ['artikli_ime']: search; let i=index">
+
+        <ion-label class="ion-text-wrap">
+          <strong>{{item.artikli_ime}}</strong>
+          <p  *ngIf="type=='ulaz'">Količina: {{item.artikli_kolicina}}</p>
+          <p *ngIf="type=='virman'">Količina: {{item.artikli_kolicina2}}</p>
+          <p>Cena: {{item.artikli_cena}}</p>
+        </ion-label>
+
+        <ion-input class="ion-text-right" placeholder="Kolicina" slot="end" inputmode="numeric" type="tel"
+          [(ngModel)]="item.quantity" enterkeyhint="next" name="txt{{item.id}}" id="txt{{item.id}}" maxlength="5"
+          (keypress)="numberOnlyValidation($event)"></ion-input>
+
+      </ion-item>
+
+    </ion-list>
+
+
+    <div *ngIf="!dataLoaded" class="skeleton">
+      <div class="ion-padding custom-skeleton item" *ngFor="let item of skeleton">
+        <ion-skeleton-text animated></ion-skeleton-text>
+        <ion-skeleton-text animated></ion-skeleton-text>
+        <ion-skeleton-text animated style="width: 88%"></ion-skeleton-text>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="dataAdded" class="added">
+    <ion-icon name="checkmark-circle-outline"></ion-icon>
+    <p>
+      Products Added Successfully
+    </p>
+  </div>
+
+
+</ion-content>
+<ion-footer *ngIf="dataLoaded==true && data.length>0 && dataAdded==false">
+  <ion-button (click)="save()" expand="full" color="light">Zavrsi prijemnicu</ion-button>
+</ion-footer>

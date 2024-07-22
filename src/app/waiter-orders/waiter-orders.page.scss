@@ -1,0 +1,26 @@
+.orderdetail{
+    padding: 10px !important;
+    background-color: #efefef;
+    border-bottom: solid 1px #aeaeae;
+
+    ion-col{
+        padding: 2px 10px!important;
+    }
+ 
+}
+.grandtotal{
+    background:#ddd;
+    font-weight: bold;
+}
+
+.naplati-button {
+    min-width: 130px; // Adjust as per your design
+    --background: #3880ff; // Regular button background color
+    --background-activated: #0f3c81; // Active (pressed) button background color
+  
+    &.fiscal {
+      --background: #34c759; // Fiscal button background color
+      --background-activated: #007e3a; // Active (pressed) fiscal button background color
+    }
+  }
+  

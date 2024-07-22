@@ -1,0 +1,29 @@
+<ion-content padding class="bg" scrollY="false">
+      <div class="logo"></div>
+      <form [formGroup]="authForm" (ngSubmit)="login()" method="post" class="loginPage">
+            <div class="err" *ngIf="error">
+                  {{error}}
+            </div>
+            <div class="txt">
+                  <ion-icon name="person" slot="start"> </ion-icon>
+                  <ion-input formControlName="email" placeholder="Korisnicko ime" autocomplete="off" autocorrect="off" type="text" name="email"></ion-input>
+            </div>
+            <div class="txt">
+                  <ion-icon name="key" slot="start"> </ion-icon>
+                  <ion-input formControlName="lozinka" placeholder="Lozinka" type="password" name="password"></ion-input>
+            </div>
+            <ion-grid>
+                  <ion-row>
+                        <ion-col>
+                              <ion-button type="submit" expand="block"  class="primary" [disabled]="!authForm.valid">Prijavi se</ion-button>
+                        </ion-col>
+
+                  </ion-row>
+                  <ion-row>
+                        <ion-col>
+                              <ion-button [routerLink]="['/config']" routerLinkActive="router-link-active" color="light" expand="block" style="margin-top:50px" ><ion-icon  slot="start" name="settings-outline"></ion-icon> Konfiguracija</ion-button>
+                        </ion-col>
+                  </ion-row>
+            </ion-grid>
+      </form>
+</ion-content>

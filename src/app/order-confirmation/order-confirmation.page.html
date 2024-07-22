@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="light" (click)="close()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Confirm</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
+
+
+
+  <ion-list lines="full" class="clist" *ngIf="data.length>0;" mode="md">
+    <ion-item *ngFor="let item of data let i=index">
+
+      <ion-label slot="start">
+        <h3>{{item.artikli_ime}}</h3>
+        <p>{{item.kategorije1_naziv}}, {{item.kategorije2_naziv}}</p>
+      </ion-label>
+      <ion-label slot="end" class="cartContainer">
+        <div class="cart">
+          <div class="qty">
+            {{item.kolacina}}
+          </div>
+        </div>
+      </ion-label>
+      <ion-textarea placeholder="Unesi napomenu" [(ngModel)]="notes[item.artikli_id]"></ion-textarea>
+    </ion-item>
+
+  </ion-list>
+
+</ion-content>
+<ion-footer>
+  <ion-button expand="block" class="primary" (click)="saveClose()">Zavrsi</ion-button>
+</ion-footer>

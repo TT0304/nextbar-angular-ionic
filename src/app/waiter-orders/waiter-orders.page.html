@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{inputParams?.imeStola}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="addNew()">
+        <ion-icon slot="icon-only" name="add-outline" color="light"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list lines="full" class="clist" *ngIf="dataLoaded && data.length > 0">
+    <div *ngFor="let item of data | unique:'order_id'; let i = index;">
+      <ion-item>
+        <ion-label class="ion-text-wrap">
+          <h3>Narudžbina: {{item.order_id}}</h3>
+          <p>{{item.datum}}</p>
+        </ion-label>
+        <!-- <ion-badge slot="end" class="ion-padding">{{item.ukupno}}</ion-badge> -->
+        <ion-badge slot="end" style="margin: 6px; padding: 12px; font-weight: 300;" (click)="fiscalCharge(item.order_id, i)">Fiskalno Naplati</ion-badge>
+        <ion-badge slot="end" style="margin: 6px; padding: 12px;  font-weight: 300;" (click)="checkout(item.order_id, i)">Naplati</ion-badge>
+      </ion-item>
+      <div class="orderdetail">
+        <ion-row class="row" *ngFor="let i of data | filterBy: ['order_id']: item.order_id">
+          <ion-col class="col" size="4">
+            {{i.naziv_proizvoda}}
+          </ion-col>
+          <ion-col class="ion-text-center" size="4">
+            {{i.kolicina | round: 2}} x {{i.cena | round: 2}}
+          </ion-col>
+          <ion-col class="ion-text-right" size="4">
+            {{i.kolicina * i.cena | round: 2}}
+          </ion-col>
+        </ion-row>
+        <hr>
+        <ion-row class="row" style="font-size: 18px;">
+          <ion-col>Ukupno</ion-col>
+          <ion-col class="ion-text-end">{{item.ukupno}}</ion-col>
+        </ion-row>
+      </div>
+    </div>
+
+    <div class="ion-text-center ion-padding grandtotal">
+      <hr>
+      <div style="font-size: 22px;">
+        Ukupno {{grandTotal}}
+      </div>
+      <hr>
+      <ion-badge (click)="fiscalChargeAll()" style="font-size: 16px; margin: 8px; padding: 12px; font-weight: 400;">Fiskalno Naplatiti nalog</ion-badge>
+      <ion-badge (click)="checkoutAll()" style="font-size: 16px; margin: 8px; padding: 12px; font-weight: 400;">Naplatiti nalog</ion-badge>
+    </div>
+  </ion-list>
+
+  <div *ngIf="!dataLoaded" class="skeleton">
+    <div class="ion-padding custom-skeleton item" *ngFor="let item of skeleton">
+      <ion-skeleton-text animated></ion-skeleton-text>
+      <ion-skeleton-text animated></ion-skeleton-text>
+      <ion-skeleton-text animated style="width: 88%"></ion-skeleton-text>
+    </div>
+  </div>
+</ion-content>

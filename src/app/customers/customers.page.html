@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Komitenti</ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/add-customer">
+        <ion-icon slot="icon-only" name="add-outline" color="light"></ion-icon>
+      </ion-button>
+  
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar showCancelButton="focus" mode="ios" [(ngModel)]="search" color="light" placeholder="Pretraga"></ion-searchbar>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content> 
+
+
+
+  <ion-list lines="full" class="clist" *ngIf="dataLoaded==true && data.length>0;" mode="md">
+
+      <ion-item detail *ngFor="let item of data | filterByImpure: ['naziv', 'banka','maticni_broj']: search; let i=index">
+        <ion-label class="ion-text-wrap" [routerLink]="['/add-customer',item]" routerLinkActive="router-link-active" >
+          <h3>{{item.naziv}}   
+          </h3>
+          <!-- <p>{{item.ulica_broj}}, {{item.grad}},  {{item.drzava}}  {{item.postanski_broj}} </p> -->
+          <p>PIB: {{item.pib}}</p>
+          <p>Maticini Broj: {{item.maticni_broj}}</p>
+          <!-- <p>Reg No: {{item.maticni_broj}}</p> -->
+
+        </ion-label>
+        <ion-button slot="end" fill="clear" size="3" class="actionBtn" color="danger"  (click)="confirmDelete(item.id,i)"> <ion-icon name="trash" ></ion-icon></ion-button>
+
+
+      </ion-item>
+
+  </ion-list>
+
+
+  <div *ngIf="!dataLoaded" class="skeleton">
+    <div class="ion-padding custom-skeleton item" *ngFor="let item of skeleton">
+      <ion-skeleton-text animated></ion-skeleton-text>
+      <ion-skeleton-text animated></ion-skeleton-text>
+      <ion-skeleton-text animated style="width: 88%"></ion-skeleton-text>
+    </div>
+  </div>
+
+
+</ion-content>

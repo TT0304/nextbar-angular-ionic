@@ -1,0 +1,59 @@
+<ion-header>
+      <ion-toolbar>
+            <ion-buttons slot="start">
+                  <ion-menu-button></ion-menu-button>
+            </ion-buttons>
+      <ion-title>Izvestaji</ion-title>
+  </ion-toolbar>
+
+  
+
+</ion-header>
+
+<ion-content class="reports ion-padding">
+
+
+  <ion-list>
+  <ion-item detail [routerLink]="['/report-detail',{'type':'periodicni'}]" >
+    <ion-label class="ion-text-wrap">
+      <strong>Periodicni izvestaj</strong>
+    </ion-label>
+  </ion-item>
+
+  <ion-item detail [routerLink]="['/report-detail',{'type':'izvestaj'}]" >
+    <ion-label class="ion-text-wrap">
+      <strong>Izvestaj artikala</strong>
+    </ion-label>
+  </ion-item>
+
+  <ion-item detail [routerLink]="['/report-detail',{'type':'articlala_virman'}]" >
+    <ion-label class="ion-text-wrap">
+      <strong>Izvestaj artikala virman</strong>
+    </ion-label>
+  </ion-item>
+
+  <ion-item detail [routerLink]="['/report-detail',{'type':'storno_artikala'}]" >
+            <ion-label class="ion-text-wrap">
+                  <strong>Izvestaj storno artikala</strong>
+            </ion-label>
+  </ion-item>
+
+      <ion-item detail [routerLink]="['/report-detail',{'type':'Izvestaj_kuhinje'}]" >
+            <ion-label class="ion-text-wrap">
+                  <strong>Izvestaj kuhinje      </strong>
+            </ion-label>
+      </ion-item>
+
+      <ion-item detail [routerLink]="['/report-detail',{'type':'Izvestaj_Sanka'}]" >
+            <ion-label class="ion-text-wrap">
+                  <strong>Izvestaj Sanka</strong>
+            </ion-label>
+      </ion-item>
+      <ion-item detail [routerLink]="['/report-detail',{'type':'Sastojci'}]" >
+            <ion-label class="ion-text-wrap">
+                  <strong>Sastojci</strong>
+            </ion-label>
+      </ion-item>
+</ion-list>
+ 
+</ion-content>

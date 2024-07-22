@@ -1,0 +1,43 @@
+<ion-header>
+      <ion-toolbar>
+            <ion-buttons style="display: block !important;    z-index: 2132132321321 !important;" slot="start">
+                  <ion-menu-button  (click)="openMenu()" style="display: block !important;    z-index: 2132132321321 !important;"></ion-menu-button>
+            </ion-buttons> 
+            <ion-title color="light">
+                  Home
+            </ion-title>
+      </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="homepage bg">
+      <div class="ion-margin-vertical">
+            <!-- <ion-item>
+                  <ion-label>DATUM</ion-label>
+                  <ion-datetime displayFormat="YYYY-MM-DD" placeholder="Izaberite datum" [(ngModel)]="gotovina"   (ionChange)="getData()"></ion-datetime>
+            </ion-item>-->
+            <div class="stats">
+                  <div class="bx">Aktivni stolovi <span>{{data?.activeTable}}</span></div>
+            </div> 
+            <div class="stats">
+                  <div class="bx sm highlight">Gotovina 
+                        <span>{{data?.gotovina}}</span>
+                  </div>
+                  <div class="bx sm highlight">Fiskalna 
+                        <span>{{data?.fiskalna}}</span>
+                  </div>
+            </div>
+            <div class="stats">
+                  <div class="bx sm highlight">Kartica <span>{{data?.kartica}}</span></div>
+                  <div class="bx sm highlight">Virman <span>{{data?.virman}}</span></div>
+            </div>
+            <div class="stats">
+                  <div class="bx">UKUPNO <span>{{data?.ukupno}}</span></div>
+            </div>
+            <div class="stats">
+                  <div class="bx sm highlight">Prva smena <span>{{data?.prva_samena}}</span></div>
+                  <div class="bx sm highlight">Druga smena <span>{{data?.druga_samena}}</span></div>
+            </div>
+      </div>
+
+</ion-content>

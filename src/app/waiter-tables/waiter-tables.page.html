@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Aktivni stolovi</ion-title>
+  </ion-toolbar>
+  <ion-toolbar color="secondary">
+
+    <ion-select value="brown" okText="Okay" cancelText="Otkazi" (ionChange)="filterTables()" [(ngModel)]="nivoi">
+      <ion-select-option value="-1">Sve</ion-select-option>
+      <ion-select-option value="{{item.id}}" *ngFor="let item of nivoiList">{{item.ime}}</ion-select-option>
+    </ion-select>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list lines="full" class="clist" *ngIf="dataLoaded==true && data.length>0;">
+    <ion-virtual-scroll [items]="data" approxItemHeight="70px">
+ 
+      <ion-item detail *virtualItem="let item; let itemBounds = bounds; let i = index;" [routerLink]="['/waiter-tables/waiter-orders',item]"
+        routerLinkActive="router-link-active">
+        <ion-label class="ion-text-wrap">
+          <h3>{{item.imeStola}}</h3> 
+          <p>{{item.waiterName}}</p>
+          <p> {{item.nivoi_ime}} </p>
+          <p> {{item.last_order}} </p>
+
+        </ion-label>
+
+        <ion-badge slot="end" class="ion-padding">{{item.total}}</ion-badge>
+
+      </ion-item>
+    </ion-virtual-scroll>
+
+  </ion-list>
+
+  <div *ngIf="!dataLoaded" class="skeleton">
+    <div class="ion-padding custom-skeleton item" *ngFor="let item of skeleton">
+      <ion-skeleton-text animated></ion-skeleton-text>
+      <ion-skeleton-text animated></ion-skeleton-text>
+      <ion-skeleton-text animated style="width: 88%"></ion-skeleton-text>
+    </div>
+  </div>
+</ion-content>

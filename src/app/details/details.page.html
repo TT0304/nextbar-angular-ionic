@@ -1,0 +1,94 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/complaint-list"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Notice Details</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+
+
+  <div *ngIf="images.length>0 && dataLoaded" class="picCnt">
+
+
+    <ion-slides pager="true">
+      <ion-slide *ngFor="let img of images; let i = index" class="_slide">
+        <img src="{{img.picture}}" alt="">
+      </ion-slide>
+
+    </ion-slides>
+  </div>
+  <ion-list class="skPadding" *ngIf="!dataLoaded">
+
+    <ion-item>
+      <ion-label>
+        <ion-skeleton-text animated class="img"></ion-skeleton-text>
+      </ion-label>
+
+
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        <ion-skeleton-text animated></ion-skeleton-text>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        <ion-skeleton-text animated></ion-skeleton-text>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        <ion-skeleton-text animated></ion-skeleton-text>
+      </ion-label>
+    </ion-item>
+ 
+
+     
+  
+
+  </ion-list>
+
+
+  <div class="ion-padding" class="detail" *ngIf="dataLoaded">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="5">Vehicle No</ion-col>
+        <ion-col size="7" class="v">{{data.vehicleNo}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="5">Business Name</ion-col>
+        <ion-col size="7" class="v">{{data.businessName}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="5">Status</ion-col>
+        <ion-col size="7" class="v">{{data.status}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="5">Lodge Date</ion-col>
+        <ion-col size="7" class="v">{{data.lodge_date}}</ion-col>
+      </ion-row>
+
+      <ion-row>
+
+
+        <ion-col size="12">
+          <h3 class="v">Customer Feedback</h3>
+          {{data.feedback}}
+        </ion-col>
+      </ion-row>
+      <ion-row *ngIf="data.admin_feedback!==null">
+        <ion-col size="12">
+          <h3 class="v">Admin Feedback</h3>
+          {{data.admin_feedback}}
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </div>
+
+</ion-content>

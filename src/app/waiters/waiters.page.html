@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Osoblje</ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/add-waiter">
+        <ion-icon slot="icon-only" name="add-outline" color="light"></ion-icon>
+      </ion-button>
+
+      
+  
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-searchbar showCancelButton="focus" mode="ios" [(ngModel)]="search" placeholder="Pretraga"></ion-searchbar>
+
+<ion-content>
+
+
+
+
+  <div lines="full" class="clist" *ngIf="dataLoaded==true && userData.length>0">
+
+      <ion-item *ngFor="let item of userData | filterByImpure: ['ime', 'surname','napomena']: search ; let i=index"  >
+        <ion-label class="ion-text-wrap"  [routerLink]="['/add-waiter',item]">
+          <h3>{{item.ime}}           {{item.prezime}}
+          </h3>
+          <p>{{item.ulica_broj}}, {{item.grad}} </p>
+          <p>{{item.napomena}}</p>
+
+        </ion-label>
+
+
+       <ion-button slot="end" fill="clear" size="3" class="actionBtn" color="danger"  (click)="confirmDelete(item.id,i)"> <ion-icon name="trash" ></ion-icon></ion-button>
+
+      <!-- </ion-button> -->
+
+        <!-- <ion-badge color="primary">{{item.telefon}}</ion-badge> -->
+
+
+      </ion-item>
+
+    </div>
+
+
+  <div *ngIf="!dataLoaded" class="skeleton">
+    <div class="ion-padding custom-skeleton item" *ngFor="let item of skeleton">
+      <ion-skeleton-text animated></ion-skeleton-text>
+      <ion-skeleton-text animated></ion-skeleton-text>
+      <ion-skeleton-text animated style="width: 88%"></ion-skeleton-text>
+    </div>
+  </div>
+
+
+</ion-content>
